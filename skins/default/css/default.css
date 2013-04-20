@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+.section .secondaryContent {
+border-top: 1px solid #282828;
+border-right: 1px solid #282828;
+border-bottom: 1px solid #343434;
+border-left: 1px solid #282828;
+border-radius: 5px;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+-khtml-border-radius: 5px;
+box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4) inset;
+-webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4) inset;
+-moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4) inset;
+-khtml-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4) inset;
+background: #181818;
+}
+
+.secondaryContent {
+padding: 10px;
+}
+
+.section .secondaryContent h3 {
+border-radius: 3px 3px 0px 0px;
+-webkit-border-radius: 3px 3px 0px 0px;
+-moz-border-radius: 3px 3px 0px 0px;
+-khtml-border-radius: 3px 3px 0px 0px;
+}
+
+.section .secondaryContent h3 {
+font-weight: bold;
+font-size: 12px;
+font-family: Tahoma, Verdana, ³ª´®°íµñ, Nanum Gothic, ¸¼Àº °íµñ, Malgun Gothic, ÇÔÃÊ·Õµ¸¿ò, HCR Dotum, ±¼¸², Gulim, sans-serif;
+color: #FFF;
+background: url(rgba.php?r=0&g=0&b=0&a=76);
+background: rgba(0, 0, 0, 0.3);
+_filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000,endColorstr=#4C000000);
+padding: 7px;
+margin: -10px -10px 5px;
+border-bottom: 1px solid #252525;
+border-top-left-radius: 3px;
+-webkit-border-top-left-radius: 3px;
+-moz-border-radius-topleft: 3px;
+-khtml-border-top-left-radius: 3px;
+border-top-right-radius: 3px;
+-webkit-border-top-right-radius: 3px;
+-moz-border-radius-topright: 3px;
+-khtml-border-top-right-radius: 3px;
+}
+
+.section h3 {
+display: block;
+font-size: 1.17em;
+-webkit-margin-before: 1em;
+-webkit-margin-after: 1em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+font-weight: bold;
+}
+
+span.online { color: green; }
+span.offline { color: red; }
+
+#player_list {
+max-height: 100px;
+overflow-x: hidden;
+overflow-y: auto;
+border: none;
+}
+
+#player_list p {
+color: rgb(188, 188, 188);
+line-height: 1.27;
+}
+
+.player_avatar {
+position: relative;
+float: left;
+}
+
+.avatarList li {
+margin: 5px 0;
+overflow: hidden;
+zoom: 1;
+list-style: none;
+}
+
+.avatarList .avatar {
+margin-right: 5px;
+float: left;
+width: 32px;
+height: 32px;
+width: auto;
+height: auto;
+}
+
+.avatarList .avatar img {
+width: 32px;
+height: 32px;
+}
+
+.avatar img {
+background-color: rgb(18, 18, 18);
+padding: 2px;
+border: 1px solid rgb(42, 42, 42);
+border-radius: 4px;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+-khtml-border-radius: 4px;
+}
