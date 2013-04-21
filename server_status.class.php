@@ -14,7 +14,7 @@ class server_status extends WidgetHandler {
 
 	function proc($args) {
 		
-		if(!$args->query_port) $args->query_port="25566";
+		if(!$args->query_port) $args->query_port="25565";
     
 		if ( !defined('__DIR__') ) {
 		  define('__DIR__', dirname(__FILE__));
