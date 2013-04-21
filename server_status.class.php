@@ -50,6 +50,12 @@ class server_status extends WidgetHandler {
 		Context::set('oPlayer',$players);
 		Context::set('oAvatarSize',$args->avatar_size);
 		Context::set('oAvatarSite',$args->avatar_site);
+		Context::set('oServerPort',$info['HostPort']);
+		Context::set('oServerName',$info['HostName']);
+		Context::set('oGameType',$info['GameType']);
+		Context::set('oVersion',$info['Version']);
+		Context::set('oPlugins',$info['Plugins']);
+		Context::set('oMap',$info['Map']);
 
 		// 템플릿의 스킨 경로를 지정 (skin, colorset에 따른 값을 설정)
 		$tpl_path = sprintf('%sskins/%s', $this->widget_path, $args->skin);

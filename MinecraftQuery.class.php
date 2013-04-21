@@ -182,3 +182,4 @@ class MinecraftQuery
 		return SubStr( $Data, 5 );
 	}
 }
+?>
