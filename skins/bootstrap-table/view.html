@@ -1,0 +1,34 @@
+<load target="css/default.css" />
+
+{@ if($oServerStatus!='Online') $oMaxPlayers='???'; }
+
+<div>
+	<h2 class="title">Online Users</h2>
+	<small>{$oCurrentPlayer}/{$oMaxPlayers}</small>
+	{@
+		$bar = 0;
+		if($oServerStatus=='Online') $bar = ($oCurrentPlayer/$oMaxPlayers)*100;
+	}
+	<div class="progress">
+	  <div class="bar" style="width: {$bar}%;"></div>
+	</div>
+	
+	<table class="table table-hover">
+		<tbody>
+			<tr cond="oCurrentPlayer==0&&$oServerStatus=='Online'">
+				<td>&nbsp;</td>
+				<td class="text-warning">서버에 접속중인 유저가 없습니다.</td>
+			</tr>
+			
+			<tr cond="$oServerStatus!='Online'">
+				<td>&nbsp;</td>
+				<td class="text-error">서버가 다운되었습니다.</td>
+			</tr>
+		
+			<tr loop="$i=0;$i<$oCurrentPlayer;$i++">
+				<td class="avatar"><img src="http://skin.sbira.com/helm/{$oPlayer[$i]}/24" class="img-rounded" /></td>
+				<td>{$oPlayer[$i]}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
