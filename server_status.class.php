@@ -3,7 +3,6 @@
 * @class server_status
 * @author 스비라 (cs8minty@gmail.com)
 * @brief 서버 상태를 출력하는 위젯
-* @version 0.1
 **/
 
 class server_status extends WidgetHandler {

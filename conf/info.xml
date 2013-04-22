@@ -2,8 +2,8 @@
 <widget version="0.1">
     <title xml:lang="ko">서버상태 위젯</title>
     <description xml:lang="ko">서버상태를 표시해주는 위젯입니다.</description>
-    <version>0.1</version>
-    <date>2013-04-10</date>
+    <version>0.2</version>
+    <date>2013-04-22</date>
     <author email_address="cs8minty@gmail.com" link="http://sbira.com">
         <name xml:lang="ko">스비라 (SBIRA)</name>
     </author>
@@ -14,7 +14,7 @@
 
 		<var id="query_port" type="text">
 			<name xml:lang="ko">쿼리 포트</name>
-			<description xml:lang="ko">기본값 (25566)</description>
+			<description xml:lang="ko">기본값 (25565)</description>
 		</var>
 		
 		<var id="avatar_site" type="select">
@@ -31,6 +31,11 @@
 			  <value>SBI CRAFT</value>
 			  <name xml:lang="ko">SBI CRAFT</name>
 			</options>
+		</var>
+		
+		<var id="avatar_size" type="text">
+			<name xml:lang="ko">아바타 크기</name>
+			<description xml:lang="ko">단위: 픽셀(px)</description>
 		</var>
 	</extra_vars>
 </widget>
