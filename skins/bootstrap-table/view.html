@@ -1,10 +1,14 @@
 <load target="css/default.css" />
 
-{@ if($oServerStatus!='Online') $oMaxPlayers='???'; }
+{@
+	if($oServerStatus!='Online') $oMaxPlayers='???';
+	if($oCurrentPlayer==0) $noPlayer=true
+}
 
 <div>
 	<h2 class="title">Online Users</h2>
 	<small>{$oCurrentPlayer}/{$oMaxPlayers}</small>
+	<!-- 최대 접속가능 인원중 현재 접속자 수를 백분율로 표시 -->
 	{@
 		$bar = 0;
 		if($oServerStatus=='Online') $bar = ($oCurrentPlayer/$oMaxPlayers)*100;
@@ -15,14 +19,12 @@
 	
 	<table class="table table-hover">
 		<tbody>
-			<tr cond="oCurrentPlayer=='0' && $oServerStatus=='Online'">
-				<td>&nbsp;</td>
-				<td class="text-warning">서버에 접속중인 유저가 없습니다.</td>
+			<tr cond="$noPlayer&&$oServerStatus=='Online'">
+				<td class="text-warning" rowspan="2" style="text-align: center;">서버에 접속중인 유저가 없습니다.</td>
 			</tr>
 			
 			<tr cond="$oServerStatus!='Online'">
-				<td>&nbsp;</td>
-				<td class="text-error">서버가 다운되었습니다.</td>
+				<td class="text-error" rowspan="2" style="text-align: center;">서버가 다운되었습니다.</td>
 			</tr>
 		
 			<tr loop="$i=0;$i<$oCurrentPlayer;$i++">
