@@ -1,0 +1,78 @@
+<load target="css/default.css" />
+
+<div class="si_container">
+	<div class="alert alert-info" cond="!$oData->isOnline">
+		<h4 class="alert-heading">Exception:</h4>
+		{$oData->error}
+	</div>
+
+	<div cond="$oData->isOnline">
+		<div class="span" style="width: 49%">
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th colspan="2">Server info</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td>Server Name</td>
+						<td>{$oData->info['HostName']}</td>
+					</tr>
+					<tr>
+						<td>Server Adress</td>
+						<td>{$oData->server_ip}:{$oData->info['HostPort']}
+							<small style="float: right;">({$oData->info['HostIp']})</small>
+						</td>
+					</tr>
+					<tr>
+						<td>Game Type</td>
+						<td>{$oData->info['GameType']}</td>
+					</tr>
+					<tr>
+						<td>Version</td>
+						<td>{$oData->info['Version']}</td>
+					</tr>
+					<tr>
+						<td>World Map</td>
+						<td>{$oData->info['Map']}</td>
+					</tr>
+					<tr>
+						<td>Software</td>
+						<td>{$oData->info['Software']}</td>
+					</tr>
+					<tr>
+						<td>Plugins ({@print(count($oData->info['Plugins']))})</td>
+						<td class="pl">
+							<block loop="$oData->info['Plugins']=>$val">
+								{$val}<br />
+							</block>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="span" style="width: 2%"></div>
+
+		<div class="span" style="width: 49%">
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>Online ({$oData->info['Players']}/{$oData->info['MaxPlayers']})</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr loop="$oData->player=>$val">
+						<td>{$val}</td>
+					</tr>
+
+					<tr cond="$oData->info['Players']==0">
+						<td>No players in server!</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
