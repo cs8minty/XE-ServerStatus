@@ -12,54 +12,41 @@ class server_status extends WidgetHandler {
   **/
 
 	function proc($args) {
-		
-		if(!$args->query_port) $args->query_port="25565";
-    
-		if ( !defined('__DIR__') ) {
-		  define('__DIR__', dirname(__FILE__));
-		}
-			
-		require __DIR__ .'/MinecraftQuery.class.php';
-			
-		$data = new MinecraftQuery();
 
-		// 서버 연결, 타임아웃 5
-		try {
-			$data->Connect( $args->server_ip, $args->query_port, 5 );
-			$players = $data->GetPlayers();
-			$player = array('username' => $player);
-			$info = $data->GetInfo();
-		} catch( MinecraftQueryException $e ) {
-			$Error = $e->getMessage( );
+		require 'MinecraftQuery.class.php';
+
+		$data = new MinecraftQuery( );
+
+		// 위젯 설정 미입력시, 기본값 설정
+		if(!$args->query_port) $args->query_port="25565";
+
+		// 서버 연결
+		try
+		{
+			$data->Connect( $args->server_ip, $args->query_port, 1 );
+			$data->info = $data->GetInfo();
+			$data->player = $data->GetPlayers();
 		}
-		
+		catch( MinecraftQueryException $e )
+		{
+			$data->error = $e->getMessage( );
+		}
+
 		// 연결 여부 검사
-		if (!isset($Error)) {
-			$server_online = "Online";
+		if ( !isset( $data->error ) ) {
+			$data->isOnline = true;
 		} else {
-			$server_online = "Offline";
-			$info['Players'] = 0;
-			$info['MaxPlayer'] = "???";
+			$data->isOnline = false;
+			$data->info[ 'Players' ] = 0;
+			$data->info[ 'MaxPlayers' ] = "???";
 		}
-			
-		//값 반환
-		Context::set('oMaxPlayers',$info['MaxPlayers']);
-		Context::set('oCurrentPlayer',$info['Players']);
-		Context::set('oServerStatus',$server_online);
-		Context::set('oPlayer',$players);
-		
-		Context::set('oAvatarSize',$args->avatar_size);
-		Context::set('oAvatarSite',$args->avatar_site);
-		
-		Context::set('oServerIp',$info['HostIp']);
-		Context::set('oServerPort',$info['HostPort']);
-		Context::set('oServerName',$info['HostName']);
-		Context::set('oSoftware',$info['Software']);
-		Context::set('oVersion',$info['Version']);
-		Context::set('oGameType',$info['GameType']);
-		Context::set('oPlugins',$info['Plugins']);
-		Context::set('oRawPlugins',$info['RawPlugins']);
-		Context::set('oMap',$info['Map']);
+
+		$data->server_ip = $args->server_ip;
+		$data->avatar_size = $args->avatar_size;
+		$data->avatar_site = $args->avatar_site;
+
+		/* 값 반환 */
+		Context::set('oData',$data);
 
 		// 템플릿의 스킨 경로를 지정 (skin, colorset에 따른 값을 설정)
 		$tpl_path = sprintf('%sskins/%s', $this->widget_path, $args->skin);

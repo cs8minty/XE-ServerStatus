@@ -2,8 +2,8 @@
 <widget version="0.1">
     <title xml:lang="ko">서버상태 위젯</title>
     <description xml:lang="ko">서버상태를 표시해주는 위젯입니다.</description>
-    <version>0.2</version>
-    <date>2013-04-22</date>
+    <version>1.0.0</version>
+    <date>2013-04-30</date>
     <author email_address="cs8minty@gmail.com" link="http://sbira.com">
         <name xml:lang="ko">스비라 (SBIRA)</name>
     </author>

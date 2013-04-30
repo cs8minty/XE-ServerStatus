@@ -1,21 +1,22 @@
 <load target="css/default.css" />
 
-{@
-	if($oServerStatus!='Online') $oMaxPlayers='???';
-
-}
 <div class="section avatarList">
 	<div class="secondaryContent" id="serverStatus">
-		<h3>서버 상태 - <span id="status">{$oServerStatus}</span> [{$oCurrentPlayer}/{$oMaxPlayers}]</h3>
+		<h3>서버 상태 -
+			<span id="status" cond="$oData->isOnline">Online</span>
+			<span id="status" cond="!$oData->isOnline">Offline</span>
+			<span> [{$oData->info['Players']}/{$oData->info['MaxPlayers']}]</span>
+		</h3>
+
     	<div id="player_list">
-			<p cond="$oCurrentPlayer==0 && $oServerStatus=='Online'">접속중인 유저가 없습니다</p>
-			<p cond="$oServerStatus=='Offline'">서버가 다운되었습니다!<br />서버가 재시작중일 수 있으니 잠시만 기다려 주세요.</p>
-			<div class="player_avatar" loop="$i=0;$i<$oCurrentPlayer;$i++">
+			<p cond="$oData->isOnline&&$oData->info['Players']==0">접속중인 유저가 없습니다</p>
+			<p cond="!$oData->isOnline">서버가 다운되었습니다!<br />서버가 재시작중일 수 있으니 잠시만 기다려 주세요.</p>
+			<div class="player_avatar" loop="$oData->player=>$val">
 				<li class="Tooltip">
 					<a href="javascript:" class="avatar Av1s">
-						<img src="https://minotar.net/helm/{$oPlayer[$i]}/32" title="{$oPlayer[$i]}" alt="{$oPlayer[$i]}" cond="$oAvatarSite=='Minotar'">
-						<img src="http://mag.racked.eu/tools/avatar/32/{$oPlayer[$i]}.png" title="{$oPlayer[$i]}" alt="{$oPlayer[$i]}" cond="$oAvatarSite=='Empire Minecraft'">
-						<img src="http://skin.sbira.com/helm/{$oPlayer[$i]}/32" title="{$oPlayer[$i]}" alt="{$oPlayer[$i]}" cond="$oAvatarSite=='SBI CRAFT'">
+						<img src="https://minotar.net/helm/{$val}/32" title="{$val}" alt="{$val}" cond="$oData->avatar_site=='Minotar'">
+						<img src="http://mag.racked.eu/tools/avatar/32/{$val}.png" title="{$val}" alt="{$val}" cond="$oData->avatar_site=='Empire Minecraft'">
+						<img src="http://skin.sbira.com/helm/{$val}/32" title="{$val}" alt="{$val}" cond="$oData->avatar_site=='SBI CRAFT'">
 					</a>
 				</li>
 			</div>

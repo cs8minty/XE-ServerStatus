@@ -1,36 +1,39 @@
 <load target="css/default.css" />
 
+<h2 class="title">Online Users</h2>
+<small>{$oData->info['Players']}/{$oData->info['MaxPlayers']}</small>
+<!-- 최대 접속가능 인원중 현재 접속자 수를 백분율로 표시 -->
 {@
-	if($oServerStatus!='Online') $oMaxPlayers='???';
-	if($oCurrentPlayer==0) $noPlayer=true
+	$bar = 0;
+	if($oData->isOnline) $bar = ($oData->info['Players']/$oData->info['MaxPlayers'])*100;
 }
-
-<div>
-	<h2 class="title">Online Users</h2>
-	<small>{$oCurrentPlayer}/{$oMaxPlayers}</small>
-	<!-- 최대 접속가능 인원중 현재 접속자 수를 백분율로 표시 -->
-	{@
-		$bar = 0;
-		if($oServerStatus=='Online') $bar = ($oCurrentPlayer/$oMaxPlayers)*100;
-	}
-	<div class="progress">
-	  <div class="bar" style="width: {$bar}%;"></div>
-	</div>
-	
-	<table class="table table-hover">
-		<tbody>
-			<tr cond="$noPlayer&&$oServerStatus=='Online'">
-				<td class="text-warning" rowspan="2" style="text-align: center;">서버에 접속중인 유저가 없습니다.</td>
-			</tr>
-			
-			<tr cond="$oServerStatus!='Online'">
-				<td class="text-error" rowspan="2" style="text-align: center;">서버가 다운되었습니다.</td>
-			</tr>
-		
-			<tr loop="$i=0;$i<$oCurrentPlayer;$i++">
-				<td class="avatar"><img src="http://skin.sbira.com/helm/{$oPlayer[$i]}/24" class="img-rounded" /></td>
-				<td>{$oPlayer[$i]}</td>
-			</tr>
-		</tbody>
-	</table>
+<div class="progress">
+  <div class="bar" style="width: {$bar}%;"></div>
 </div>
+
+<table class="table table-hover">
+	<tbody>
+		<tr cond="$oData->isOnline&&$oData->info['Players']==0">
+			<td class="text-warning" rowspan="2" style="text-align: center;">
+				서버에 접속중인 유저가 없습니다.
+			</td>
+		</tr>
+		
+		<tr cond="!$oData->isOnline">
+			<td class="text-error" rowspan="2" style="text-align: center;">
+				서버가 다운되었습니다.<br />{$oData->error}
+			</td>
+		</tr>
+	
+		<tr loop="$oData->player=>$val">
+			<td class="avatar">
+				<img src="https://minotar.net/helm/{$val}/24" class="img-rounded" cond="$oData->avatar_site=='Minotar'" />
+				<img src="http://mag.racked.eu/tools/avatar/24/{$val}.png" class="img-rounded" cond="$oData->avatar_site=='Empire Minecraft'" />
+				<img src="http://skin.sbira.com/helm/{$val}/24" class="img-rounded" cond="$oData->avatar_site=='SBI CRAFT'" />
+			</td>
+			<td>
+				{$val}
+			</td>
+		</tr>
+	</tbody>
+</table>
