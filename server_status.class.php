@@ -13,7 +13,7 @@ class server_status extends WidgetHandler {
 
 	function proc($args) {
 
-		require 'MinecraftQuery.class.php';
+		require_once 'MinecraftQuery.class.php';
 
 		$data = new MinecraftQuery( );
 
