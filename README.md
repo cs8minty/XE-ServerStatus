@@ -8,7 +8,7 @@ Have been produced using the open source library [PHP-Minecraft-Query][1].
 본 위젯은 마인크래프트 서버의 쿼리를 이용하여, 서버의 여러 정보 등을 획득할 수 있는 위젯 입니다.  
 오픈소스 라이브러리인 [PHP-Minecraft-Query][1] 를 이용하여 제작하였습니다.
 
-## Autor
+## Author
 **스비라(sbira)**
 
 Homepage: [SBI CRAFT][2]  
